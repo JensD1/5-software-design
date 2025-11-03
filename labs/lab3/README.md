@@ -9,7 +9,7 @@
 - Implement the **Singleton** pattern correctly (API, visibility, behavior).
 - Implement the **Observer** pattern (Subject/Observer roles, notifications).
 - Use Java’s **PropertyChange** mechanism to decouple events from handlers.
-- How to handle concurrency (e.g. double-checked locking).
+- How to handle concurrency (e.g. double-checked locking or holder pattern).
 - Add at least one **integration test** and one **unit test**.
 
 ## Context
@@ -55,6 +55,12 @@ This lab is three small parts that build pattern fluency:
     - `Controller.adjust(String sku, int newQty)` updates the DB.
     - In `Main`, obtain the Singleton DB, register listeners, and perform a few adjustments (one above and one below the
       threshold) to see events.
+
+### Deliverables
+- You'll have to provide **at least one Unit test and one Integration test**.
+- All code should be implemented.
+- _Bonus_: provide UML diagrams
+
 
 ## Where to Code
 

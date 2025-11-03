@@ -15,5 +15,8 @@
         <module>lab1</module>
         <module>lab2</module>
         <module>lab3</module>
+        <module>lab4a</module>
+        <module>lab4b</module>
+        <module>lab5</module>
     </modules>
 </project>

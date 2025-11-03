@@ -1,0 +1,63 @@
+difficulty:
+  start_level: 1
+  max_level: 999
+
+  # Density
+  base_density: 0.10
+  per_level_delta: 0.015
+  jitter: 0.015
+  min_density: 0.04
+  max_density: 0.38
+
+  # Canvas size
+  start_w: 9
+  start_h: 7
+  step_every_levels_w: 2
+  step_every_levels_h: 3
+  max_w: 50
+  max_h: 38
+
+  # Crates
+  start_crates: 2
+  step_every_levels_crates: 2
+  max_crates: 14
+
+  pulls_min_base: 6
+  pulls_min_per_crate: 7
+  pulls_max_base: 16
+  pulls_max_per_crate: 14
+  pulls_per_100_tiles: 6
+  glacier_pull_bonus: 8
+
+  seed_base: 123456
+
+generator:
+  max_wall_density_safety: 0.60
+
+render:
+  tile_px: 48
+  padding_px: 16
+  legend_height_px: 28
+  font_family: "System"
+  legend_font_px: 14
+  legend_text_color: "#111111"
+  toolbar_bg: "#f4f4f4"
+  toolbar_text: "#000000"
+  status_bg: "#f8f8f8"
+
+themes:
+  warehouse:
+    background: "#1E3D3A"
+    floor: "#FBEED7"
+    wall: "#2F4F4F"
+    target: "#32CD32"
+    player: "#00008B"
+    box: "#F4A460"
+
+  glacier:
+    background: "#EAF6FB"
+    floor: "#E3FCFB"
+    wall: "#156A73"
+    target: "#32CD32"
+    player: "#00008B"
+    box: "#ADD8E6"

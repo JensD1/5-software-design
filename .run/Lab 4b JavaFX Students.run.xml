@@ -1,0 +1,19 @@
+<component name="ProjectRunConfigurationManager">
+    <configuration default="false" name="Lab4b JavaFX" type="MavenRunConfiguration" factoryName="Maven">
+        <MavenSettings>
+            <option name="myRunnerParameters">
+                <MavenRunnerParameters>
+                    <option name="workingDirPath" value="$PROJECT_DIR$/labs/lab4b" />
+                    <option name="pomFileName" value="pom.xml" />
+                    <option name="goals">
+                        <list>
+                            <option value="clean" />
+                            <option value="org.openjfx:javafx-maven-plugin:0.0.8:run" />
+                        </list>
+                    </option>
+                </MavenRunnerParameters>
+            </option>
+        </MavenSettings>
+        <method v="2" />
+    </configuration>
+</component>

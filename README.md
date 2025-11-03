@@ -1,7 +1,7 @@
 # 5–Software Design — Student Starter
 
 Welcome! This repository contains the **starter code and instructions** for the *5–Software Design* labs.
-Each lab lives in `labs/labX` and has its **own README** with the tasks, tips, and the exact build commands.
+Each lab lives in `labs/labX` and has its **own README** with a clear explanation, the tasks, and the tips.
 
 ---
 
@@ -9,24 +9,56 @@ Each lab lives in `labs/labX` and has its **own README** with the tasks, tips, a
 
 - **Java 21** (Temurin 21 recommended, e.g., via SDKMAN)
 - **Git**
-- **IntelliJ IDEA** (Community or Ultimate)
-- **Maven Wrapper** (already included: use `./mvnw`; you do **not** need to install Maven)
+- **IntelliJ IDEA** (Community or Ultimate): highly recommended.
 - *Windows users:* Preferably install WSL (Windows Subsystem for Linux).
 
 ---
 
-## Quick Start (IntelliJ)
+## Initialization
+> We recommend IntelliJ; it handles Maven import and run configs automatically.
+
+### IntelliJ
 
 1. **Open the project by the root `pom.xml`**  
    *File → Open…* → select the **root `pom.xml`** → *Open as Project*.
-2. **Verify SDKs (Java 21 everywhere)**  
-   *File → Project Structure → Project* → SDK = **21**; Language level = **21**.  
-   *Project Structure → Modules* → ensure modules inherit the Project SDK.  
-   *Settings → Build Tools → Maven → Importing* → JDK for importer = **21**.
-3. **Reload Maven** using the **Maven** tool window (**Reload All Maven Projects**).
+2. **Verify SDKs (Java 21 everywhere)**
+    1) *File → Project Structure → Project* → SDK = **21**; Language level = **21**.
+    2) *Project Structure → Modules* → ensure modules inherit the Project SDK.
+    3) *Settings → Build Tools → Maven → Importing* → JDK for importer = **21**.
+3. You should now be able to see the maven menu (click on the `m` icon on the right hand side of the screen).
+    1) Within this maven menu, press the two circular arrows at the top. Then select **Reload All Maven Projects**
+4. **Sanity check**
+   In the Maven tool window: *Software Design – Student → Lifecycle → test* → **double‑click**.
+   You should see `[INFO] BUILD SUCCESS`.
 
 > If the Maven tab is greyed out, you most likely opened a folder instead of the **root `pom.xml`**. Close the project
 > and re-open the `pom.xml`.
+
+**Run something:** open a class with a `main` method and click the green ▶ gutter icon. For a demo, run `labs/grader/src/main/java/be/uantwerpen/sd/labs/grader/GraderMain.java` (this launches the autograder).
+
+### VSCode
+You can use VS Code, but **you** are responsible for a correct Java/Maven setup.
+
+- **Build everything (skip tests)**
+  ```bash
+  ./mvnw clean package -DskipTests
+  ```
+
+- **Run all tests in all labs**
+  ```bash
+  ./mvnw clean verify
+  ```
+
+- **Work on a single lab** (build & run that lab's tests only)
+  ```bash
+  ./mvnw -pl labs/labX -am test
+  ```
+
+    - Note, you need to replace X with the actual lab. For example:
+      ```bash
+      ./mvnw -pl labs/lab1 -am test
+      ```
+
 
 ---
 
@@ -48,68 +80,33 @@ Each lab lives in `labs/labX` and has its **own README** with the tasks, tips, a
 
 ---
 
-## Build & Test
+## How To Get Started With Each Lab
 
-All commands are run from the **repo root** using the **Maven wrapper** (`./mvnw`).
-
-- **Build everything (skip tests)**
-  ```bash
-  ./mvnw clean package -DskipTests
-  ```
-
-- **Run all tests in all labs**
-  ```bash
-  ./mvnw clean verify
-  ```
-
-- **Work on a single lab** (build & run that lab's tests only)
-  ```bash
-  ./mvnw -pl labs/labX -am test
-  ```
-
-    - example:
-      ```bash
-      ./mvnw -pl labs/lab1 -am test
-      ```
-
-- **Run a specific test class from the IDE**  
-  Open the test class and click the green ▶ gutter icon.
-
----
-
-## How To Get Started
-
+- Download all files of the lab from BB.
+    - If Visual Paradigm is used, open the provided `.xml`.
 - Review the presentation for each lab.
-- Read the readme.md
-- Places where to code is annotated with TODO's.
+- Read the lab’s README in `labs/labX/README.md`.
+- Code where TODOs indicate (use IntelliJ’s **TODO** window to find them).
 
 ---
 
-## Autograder (for students)
+## Autograder
 
-The project includes an **autograder** that checks your lab code by calling your public methods via reflection.
-
-### What it does
-
-- Runs a set of tests per lab and prints a clear pass/fail report.
-- Shows short hints when something fails (e.g., missing method or wrong return value).
-- **Default:** runs **all** available labs.
-- You can also run a **single** lab (e.g., only `lab1`).
+The autograder checks your public methods via reflection and prints a pass/fail report with hints.
 
 ### How to run it (IntelliJ)
 
 This is the *Fastest* option, but requires the usage of IntelliJ with Maven import.
 
-1. Open the project and let IntelliJ import Maven.
-2. In the Project view, open  
-   `labs/grader/src/main/java/be/uantwerpen/sd/labs/grader/GraderMain.java`
+1. Open the project and let IntelliJ import Maven (should already be done if you followed this readme correctly).
+2. Open `labs/grader/src/main/java/be/uantwerpen/sd/labs/grader/GraderMain.java`.
 3. Right-click **GraderMain** → **Run 'GraderMain.main()'** to grade **all** labs.
 4. To grade a **single** lab:  
    Run dropdown ▸ **Edit Configurations…** ▸ **Program arguments** → `--lab lab1` ▸ **Run**.
 
 > You can also press the green “play” icon next to the `main` method in `GraderMain`.
 
-### How to run it (command line)
+### How to run it (command line, VSCode)
 
 This option is a bit slower due to the necessity of building the `./m2-autograder` package from scratch at runtime.
 However, this option doesn't require a Maven setup (already done for you) nor does it require IntelliJ.
@@ -152,15 +149,13 @@ bash ./labs/autograder.sh lab lab1
 
 - Each **suite** prints a header and numbered tests:
     - `✅` = passed, `❌` = failed
-    - Failed tests show a short hint (sometimes with a reflection note like “Missing method …”)
+    - Failed tests show a short hint
 - A final **summary** line shows how many tests passed.
 
 ### Expectations for your code
 
-- Put your classes in the right **package** per lab, e.g.:  
-  `be.uantwerpen.sd.labs.lab1` (for Lab 1)
-- Match the required **class names** and **method signatures** as described in the lab statement.
-- Methods usually return `0` for success and `-1` for failure (unless the lab says otherwise).
+* Use the correct **package** per lab, e.g. `be.uantwerpen.sd.labs.lab1`.
+* Match the required **class names** and **method signatures** from the lab README.
 
 ### Common issues & quick fixes
 
@@ -178,6 +173,8 @@ bash ./labs/autograder.sh lab lab1
 
 That’s it—run, read the hints, adjust your code, and re-run until it’s all green. ✅
 
+> Note that you **should not** adjust the autograder itself. During grading all autograders will automatically be replaced with the teacher's version to ensure correctness.
+
 ---
 
 ## Deliverables (Portfolio)
@@ -193,7 +190,7 @@ _Portfolio:_
     - **UML exports**:
         - **One folder for *each* lab** when applicable (Visual Paradigm project exported as defined in the
           presentations).
-    - **AI usage Document** (if AI is used)
+    - **AI usage Document** (if AI is used, which is highly discouraged)
         - A document (type of choice: word, txt, or markdown) explaining how, why, and for what tasks AI is used.
         - ***ENSURE YOU UNDERSTAND WHAT YOU DELIVER***
 - **Naming convention:** `5SD_Portfolio_FirstnameLastname.zip` (replace with your name).
@@ -255,6 +252,6 @@ _Project:_
 - **Java 21** everywhere (Project SDK, module SDK, Maven importer JDK).
 - If you see benign **Byte Buddy/Mockito agent** warnings on Java 21 during tests, you can ignore them.
 
-Good luck, and have fun building clean, tested designs! 👍
+Good luck, and have fun building clean, tested designs!
 
 ---
